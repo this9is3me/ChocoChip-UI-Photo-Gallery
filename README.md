@@ -1,7 +1,7 @@
 # ChocoChip-UI-Photo-Gallery
 A simple photo gallery created using ChocolateChip UI.<br>
 <h2>Features:</h2>
-- Able to retrieve and display an image from its URL.
+- Able to retrieve and display an image from its web URL.
 - Able to delete images from grid view.
 
 <h2>Components:</h2>
