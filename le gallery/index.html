@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <title>Le Gallery</title>
+  
+  <link rel="stylesheet" href="css/chui-ios-3.5.2.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="js/chui-3.5.2.js"></script>
+  <!-- Add fancyBox -->
+  <link rel="stylesheet" href="fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+  <script type="text/javascript" src="fancybox/jquery.fancybox.pack.js?v=2.1.5"></script> 
+
+</head>
+    
+<body>
+<!-- Login -->
+<nav class='current'>
+        <h1>Le Gallery</h1>
+    </nav>
+<article id='login' class='current'>
+    <section>
+        <h2>LOGIN:</h2>
+        <ul ui-implements='form' class='list'>
+            <li class='comp'>
+                <div>
+                    <label for='userName'>User name:</label>
+                </div>
+                <aside>
+                    <input id="username" type="text" name="user.username" autocapitalize="off" autocorrect="off" required>
+                </aside>
+            </li>
+            <li class='comp'>
+                <div>
+                    <label for='password'>Password:</label>
+                </div>
+                <aside>
+                    <input id="password" type="password" name="user.password" autocapitalize="off" autocorrect="off" required>
+                </aside>
+            </li>
+        </ul>
+        <div>
+            <br><br>
+            <a class="button action" id="login" value='Login' onclick="validate()">Login</a>
+        </div>
+    </section>
+</article>
+    
+<!-- Main Gallery -->
+<nav class='current'> 
+    <a id="signout" class="button">Log Out</a>
+    <h1>Le Gallery</h1>
+</nav>
+    
+<article id='main' class='next'>
+    <section>
+        <div class='form'>
+            <input class='search' placeholder='Image URL...' type="url" id="input" name="website"/>
+            <button class='submit' type="submit" id='submit'>Add</button>
+        </div>
+        <ul class='image-grid list' id='list1'>
+        <!-- Populated by main.js -->
+        </ul>
+    </section>
+</article>
+    
+<!-- Log Out -->
+<nav class='current'>
+    <h1>Le Gallery</h1>
+    <a id='signin' class="button align-flush">Login</a>
+</nav>
+<article id='logout' class='next'>
+    <section>
+        <h1>Thank you for using Le Gallery.</h1>
+        <div>
+            <img class='logout' src='img/logout.png'/>
+        </div>
+    </section>
+</article>
+    
+<script src="js/main.js"></script>
+<script>
+        // Allows opening and closing of photos with animations
+        $(document).ready(function() {
+            // Upload image   
+            $(".fancybox").fancybox({
+                openEffect	: 'elastic',
+                closeEffect	: 'elastic',
+            });
+        });
+        $(function() {
+            $('#signout').on('singletap', function() {
+                $.UIGoBackToArticle('#logout');
+            });
+        });
+        $(function() {
+            $('#signin').on('singletap', function() {
+                $.UIGoBackToArticle('#login');
+            });
+        });
+    
+    // Login validation
+    var attempt = 3; // Variable to count number of attempts.
+
+    function validate() {
+    'use strict';
+    var username = document.getElementById("username").value,
+        password = document.getElementById("password").value;
+    if (username === "test" && password === "test") {
+        $.UIGoBackToArticle('#main');
+        // clear form
+        $("#username").val("");
+        $("#password").val("");
+        return false;
+    } else {
+        attempt = attempt - 1;
+        $.UIPopup({
+            id: "warning",
+            title: 'Incorrect login',
+            message: 'You have ' + attempt + " attempt(s).",
+            continueButton: 'Cancel',
+        });
+        // Disabling fields after 3 attempts.
+        if (attempt <= 0) {
+            document.getElementById("username").disabled = true;
+            document.getElementById("password").disabled = true;
+            document.getElementById("login").disabled = true;
+            return false;
+        }
+    }
+}
+</script>
+</body>
+</html>

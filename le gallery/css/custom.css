@@ -1,0 +1,81 @@
+
+.list.deletable > li.selected{
+    margin-right: 0;
+}
+
+.list li > .deletion-indicator{
+    position:absolute;
+    height: 50px;
+    width: 50px;
+    margin-left: -60px;
+}
+
+.image-grid {
+	list-style: none:
+	margin: 0;
+	padding: 0;
+	position: relative;
+	left: 15px;
+}
+.image-grid > li {
+	list-style: none:
+	margin: 0;
+	padding: 0;
+}
+.image-grid::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.image-grid > li {
+	float: left;
+	height: 100px;
+	width: 33%;
+	border: solid 1px #E0E0EB;
+	box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	display: block;
+}
+.image-grid > li > img {
+	display: block;
+	width: 150%;
+}
+
+.page3 {
+    max-width: 100%;
+}
+
+input {
+
+}
+
+
+/********** Beautify the search bar *******************/
+.form {
+    width:500px;
+    margin:50px auto;
+}
+
+.search{
+    padding:8px 15px;
+    background:rgba(50, 50, 50, 0.2);
+    border:0px solid #dbdbdb;
+    color:black;
+}
+.submit{
+    position:relative;
+    padding:6px 15px;
+    left:-8px;
+    border:2px solid #207cca;
+    background-color:#207cca;
+    color:#fafafa;
+}
+
+.logout {
+    position: relative;
+    width: 50%;
+    left: 30%;
+}
+
+
